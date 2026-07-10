@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:personal_portfolio/models/dark_theme_data.dart';
 import 'package:personal_portfolio/widgets/google_font_widget.dart';
 import 'package:personal_portfolio/widgets/hero_section.dart';
 import 'package:personal_portfolio/widgets/text_button_widget.dart';
 
-class Portfolio extends StatelessWidget {
+class Portfolio extends StatefulWidget{
   const Portfolio({super.key});
 
   @override
+  State<Portfolio> createState(){
+    return _PortfolioState();
+  }
+}
+
+class _PortfolioState extends State<Portfolio> {
+  // var appBarTextColor=Colors.black;
+  var gcolor1=Colors.white;
+  var gcolor2=const Color.fromARGB(255, 204, 87, 246);
+  List<Color> colorsList =[] ;
+  bool isDarkMode=false;
+  // const Portfolio({super.key});
+  void _switchToDarkTheme(){
+    setState(
+      (){
+        // colorsList=DarkThemeData().backGroundGradientList;
+        isDarkMode = true;
+      }
+    );
+    
+  }
+  @override
   Widget build(context) {
+   colorsList = (isDarkMode?DarkThemeData().backGroundGradientList:[gcolor1,gcolor2]);
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [Colors.white,const Color.fromARGB(255, 175, 255, 83)],
+        gradient: LinearGradient(colors: colorsList,
         // gradient: LinearGradient(
         //   colors: [Color.fromARGB(255, 17, 67, 215), Color.fromARGB(255, 121, 20, 235)],
           begin: Alignment.topCenter,
@@ -33,21 +57,27 @@ class Portfolio extends StatelessWidget {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               alignment: TextAlign.center,
-              // color: Color(0xFFF8FAFC),
+              color: isDarkMode?DarkThemeData().appBarTextColor :Colors.purpleAccent,
             ),
-          ),
+          ),  
 
           // backgroundColor: const Color.fromARGB(255, 176, 174, 174),
           actions: [
-            TextButtonWidget(() {}, 'Home'),
-            TextButtonWidget(() {}, 'Projects'),
-            TextButtonWidget(() {}, 'Services'),
-            TextButtonWidget(() {}, 'GitHub'),
-            TextButtonWidget(() {}, 'MyCV'),
+            TextButtonWidget(isDarkMode,() {}, 'Home'),
+            TextButtonWidget(isDarkMode,() {}, 'Projects'),
+            TextButtonWidget(isDarkMode,() {}, 'Services'),
+            TextButtonWidget(isDarkMode,() {}, 'GitHub'),
+            TextButtonWidget(isDarkMode,() {}, 'MyCV'),
+
             SizedBox(width: 30),
+            IconButton(
+              onPressed: _switchToDarkTheme,
+              icon: Icon(isDarkMode?(Icons.sunny):(Icons.mode_night)),
+              color: isDarkMode? DarkThemeData().appBarTextColor: Colors.black,
+            ),
           ],
         ),
-        body: HeroSection(),
+        body: HeroSection(isDarkMode),
       ),
     );
   }
