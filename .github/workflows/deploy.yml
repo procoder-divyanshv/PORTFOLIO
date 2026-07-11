@@ -24,6 +24,9 @@ jobs:
       - name: Build Web App
         run: flutter build web --release --base-href "/PORTFOLIO/"
 
+      - name: Disable Jekyll for GitHub Pages
+        run: touch build/web/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
