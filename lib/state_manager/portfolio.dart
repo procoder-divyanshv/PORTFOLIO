@@ -3,7 +3,7 @@ import 'package:personal_portfolio/models/dark_theme_data.dart';
 import 'package:personal_portfolio/models/light_theme_data.dart';
 import 'package:personal_portfolio/widgets/google_font_widget.dart';
 import 'package:personal_portfolio/widgets/hero_section.dart';
-import 'package:personal_portfolio/widgets/services_screen.dart';
+import 'package:personal_portfolio/screnns/services_screen.dart';
 import 'package:personal_portfolio/widgets/text_button_widget.dart';
 
 class Portfolio extends StatefulWidget{
@@ -27,7 +27,7 @@ class _PortfolioState extends State<Portfolio> {
     setState(
       (){
         // colorsList=DarkThemeData().backGroundGradientList;
-        isDarkMode = true;
+        isDarkMode = !(isDarkMode);
       }
     );
     
@@ -44,6 +44,24 @@ class _PortfolioState extends State<Portfolio> {
       }
     );
   }
+  void _onClickedProjects(){
+    setState(
+      (){
+        currentScreen='projects';
+      }
+    );
+  }
+  void _onClickedMyCV(){
+    setState(
+      (){
+        currentScreen='mycv';
+      }
+    );
+  }
+
+  void _onClickedGitHub(){
+    setState(() => (currentScreen='github'));
+      }
   @override
   Widget build(context) {
    colorsList = (isDarkMode?DarkThemeData().backGroundGradientList:LightThemeData().backgroundColor);
@@ -79,17 +97,18 @@ class _PortfolioState extends State<Portfolio> {
           // backgroundColor: const Color.fromARGB(255, 176, 174, 174),
           actions: [
             TextButtonWidget(isDarkMode,_onClickHome, 'Home'),
-            TextButtonWidget(isDarkMode,() {}, 'Projects'),
+            TextButtonWidget(isDarkMode,_onClickedProjects, 'Projects'),
             TextButtonWidget(isDarkMode,_onClickedServices, 'Services'),
-            TextButtonWidget(isDarkMode,() {}, 'GitHub'),
-            TextButtonWidget(isDarkMode,() {}, 'MyCV'),
+            TextButtonWidget(isDarkMode,_onClickedGitHub, 'GitHub'),
+            TextButtonWidget(isDarkMode,_onClickedMyCV, 'MyCV'),
 
-            SizedBox(width: 30),
+            SizedBox(width: 10),
             IconButton(
               onPressed: _switchToDarkTheme,
               icon: Icon(isDarkMode?(Icons.sunny):(Icons.mode_night)),
               color: isDarkMode? DarkThemeData().appBarIconColor: LightThemeData().appBarIconColor,
             ),
+            SizedBox(width: 20),
           ],
         ),
         body: currentScreen == 'home'?HeroSection(isDarkMode):ServicesScreen(isDarkMode),

@@ -32,20 +32,26 @@ class ServicesScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CardDisplayWidget(
-                headData: 'Flutter App Development',
-                breif: 'Building fast, responsive, and visually appealing cross-platform applications for web and mobile with smooth UI/UX.',
-                iconName: Icons.code,
+              Expanded(
+                child: CardDisplayWidget(isDark,
+                  headData: 'Flutter App Development',
+                  breif: 'Building fast, responsive, and visually appealing cross-platform applications for web and mobile with smooth UI/UX.',
+                  iconName: Icons.code,
+                ),
               ),
-              CardDisplayWidget(
-                headData: 'Backend Development',
-                breif: 'Designing robust, scalable server-side architectures and secure RESTful APIs using the MERN stack for high performance.',
-                iconName: Icons.settings,
+              Expanded(
+                child: CardDisplayWidget(isDark,
+                  headData: 'Backend Development',
+                  breif: 'Designing robust, scalable server-side architectures and secure RESTful APIs using the MERN stack for high performance.',
+                  iconName: Icons.settings,
+                ),
               ),
-              CardDisplayWidget(
-                headData: 'Data Engeneering',
-                breif: 'Architecting reliable cloud infrastructure and scalable data ingestion pipelines within the AWS ecosystem.',
-                iconName: Icons.store,
+              Expanded(
+                child: CardDisplayWidget(isDark,
+                  headData: 'Data Engeneering',
+                  breif: 'Architecting reliable cloud infrastructure and scalable data ingestion pipelines within the AWS ecosystem.',
+                  iconName: Icons.store,
+                ),
               ),
             ],
           ),
