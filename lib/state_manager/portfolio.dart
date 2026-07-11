@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/models/dark_theme_data.dart';
+import 'package:personal_portfolio/models/light_theme_data.dart';
 import 'package:personal_portfolio/widgets/google_font_widget.dart';
 import 'package:personal_portfolio/widgets/hero_section.dart';
 import 'package:personal_portfolio/widgets/text_button_widget.dart';
@@ -15,8 +16,8 @@ class Portfolio extends StatefulWidget{
 
 class _PortfolioState extends State<Portfolio> {
   // var appBarTextColor=Colors.black;
-  var gcolor1=Colors.white;
-  var gcolor2=const Color.fromARGB(255, 204, 87, 246);
+  // var gcolor1=Colors.white;
+  // var gcolor2=const Color.fromARGB(255, 204, 87, 246);
   List<Color> colorsList =[] ;
   bool isDarkMode=false;
   // const Portfolio({super.key});
@@ -31,13 +32,13 @@ class _PortfolioState extends State<Portfolio> {
   }
   @override
   Widget build(context) {
-   colorsList = (isDarkMode?DarkThemeData().backGroundGradientList:[gcolor1,gcolor2]);
+   colorsList = (isDarkMode?DarkThemeData().backGroundGradientList:LightThemeData().backgroundColor);
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: colorsList,
         // gradient: LinearGradient(
         //   colors: [Color.fromARGB(255, 17, 67, 215), Color.fromARGB(255, 121, 20, 235)],
-          begin: Alignment.topCenter,
+          begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
@@ -57,7 +58,7 @@ class _PortfolioState extends State<Portfolio> {
               fontSize: 30,
               fontWeight: FontWeight.bold,
               alignment: TextAlign.center,
-              color: isDarkMode?DarkThemeData().appBarTextColor :Colors.purpleAccent,
+              color: isDarkMode?DarkThemeData().appBarLogoColor :LightThemeData().appBarLogoColor,
             ),
           ),  
 
@@ -73,7 +74,7 @@ class _PortfolioState extends State<Portfolio> {
             IconButton(
               onPressed: _switchToDarkTheme,
               icon: Icon(isDarkMode?(Icons.sunny):(Icons.mode_night)),
-              color: isDarkMode? DarkThemeData().appBarTextColor: Colors.black,
+              color: isDarkMode? DarkThemeData().appBarIconColor: LightThemeData().appBarIconColor,
             ),
           ],
         ),

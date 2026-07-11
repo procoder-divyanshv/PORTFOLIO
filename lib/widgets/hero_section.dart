@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/models/dark_theme_data.dart';
+import 'package:personal_portfolio/models/light_theme_data.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_portfolio/widgets/google_font_widget.dart';
 
@@ -23,7 +24,7 @@ class HeroSection extends StatelessWidget {
                 fontSize: 100.0,
                 fontStyle: 'Google Sans Flex',
                 fontWeight: FontWeight.w900,
-                color: isDark?DarkThemeData().mainHeading:Colors.black,
+                color: isDark?DarkThemeData().mainHeading:LightThemeData().mainHeading,
               ),
               // child: Text('FLUTTER APPLICATION DEVELOPER\nDIVYANSH VERMA',
               // textAlign: TextAlign.left,
@@ -45,7 +46,7 @@ class HeroSection extends StatelessWidget {
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           alignment: TextAlign.left,
-                          color: isDark?DarkThemeData().textOnScreen:Colors.black,
+                          color: isDark?DarkThemeData().textOnScreen:LightThemeData().textOnScreen,
                         ),
                         const SizedBox(height: 10),
                         GoogleFontWidget(
@@ -55,14 +56,14 @@ class HeroSection extends StatelessWidget {
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
                           alignment: TextAlign.left,
-                          color: isDark?DarkThemeData().textOnScreen:Colors.black,
+                          color: isDark?DarkThemeData().textOnScreen:LightThemeData().textOnScreen,
                         ),
                         const SizedBox(height: 30),
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: isDark?DarkThemeData().buttonTextColor:const Color.fromARGB(255, 200, 11, 233),
-                            backgroundColor: isDark?DarkThemeData().buttonColor: const Color.fromARGB(255, 227, 225, 225),
+                            foregroundColor: isDark?DarkThemeData().buttonTextColor:LightThemeData().buttonTextColor,
+                            backgroundColor: isDark?DarkThemeData().buttonColor: LightThemeData().buttonColor,
                             // backgroundColor: Color(0xFF06B6D4),
                             // foregroundColor: Color(0xFF0F172A),
                             minimumSize: Size(40, 20),
