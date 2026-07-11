@@ -3,6 +3,7 @@ import 'package:personal_portfolio/models/dark_theme_data.dart';
 import 'package:personal_portfolio/models/light_theme_data.dart';
 import 'package:personal_portfolio/widgets/google_font_widget.dart';
 import 'package:personal_portfolio/widgets/hero_section.dart';
+import 'package:personal_portfolio/widgets/services_screen.dart';
 import 'package:personal_portfolio/widgets/text_button_widget.dart';
 
 class Portfolio extends StatefulWidget{
@@ -20,6 +21,7 @@ class _PortfolioState extends State<Portfolio> {
   // var gcolor2=const Color.fromARGB(255, 204, 87, 246);
   List<Color> colorsList =[] ;
   bool isDarkMode=false;
+  String currentScreen= 'home';
   // const Portfolio({super.key});
   void _switchToDarkTheme(){
     setState(
@@ -29,6 +31,18 @@ class _PortfolioState extends State<Portfolio> {
       }
     );
     
+  }
+  void _onClickHome(){
+    setState((){
+      currentScreen= 'home';
+    });
+  }
+  void _onClickedServices(){
+    setState(
+      (){
+        currentScreen='services';
+      }
+    );
   }
   @override
   Widget build(context) {
@@ -64,9 +78,9 @@ class _PortfolioState extends State<Portfolio> {
 
           // backgroundColor: const Color.fromARGB(255, 176, 174, 174),
           actions: [
-            TextButtonWidget(isDarkMode,() {}, 'Home'),
+            TextButtonWidget(isDarkMode,_onClickHome, 'Home'),
             TextButtonWidget(isDarkMode,() {}, 'Projects'),
-            TextButtonWidget(isDarkMode,() {}, 'Services'),
+            TextButtonWidget(isDarkMode,_onClickedServices, 'Services'),
             TextButtonWidget(isDarkMode,() {}, 'GitHub'),
             TextButtonWidget(isDarkMode,() {}, 'MyCV'),
 
@@ -78,7 +92,7 @@ class _PortfolioState extends State<Portfolio> {
             ),
           ],
         ),
-        body: HeroSection(isDarkMode),
+        body: currentScreen == 'home'?HeroSection(isDarkMode):ServicesScreen(isDarkMode),
       ),
     );
   }
